@@ -22,9 +22,6 @@ public enum StringType
 /// <summary>
 /// Guitars because they're cool
 /// </summary>
-/// <remarks>
-/// Constructor which sets all the properties
-/// </remarks>
 /// <param name="pickup">The broad pickup type</param>
 /// <param name="strings">Steel string or nylon</param>
 /// <param name="name">The name of the guitar</param>
