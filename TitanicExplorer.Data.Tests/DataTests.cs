@@ -1,31 +1,26 @@
-namespace TitanicExplorer.Data.Tests
+using System.IO;
+using Xunit;
+
+namespace TitanicExplorer.Data.Tests;
+
+public class DataTests
 {
-    using Xunit;
-    using System.IO;
-    using System.Linq;
-
-    public class DataTests
+    public DataTests()
     {
-        public DataTests()
-        {
-            this.SampleDataPath = Path.GetTempFileName();
+        SampleDataPath = Path.GetTempFileName();
 
-            File.WriteAllText(this.SampleDataPath, Resource.passengers);
-        }
+        File.WriteAllText(SampleDataPath, Resource.passengers);
+    }
 
-        public string SampleDataPath
-        {
-            get; set; 
-        }
+    public string SampleDataPath { get; }
 
-        [Fact]
-        public void LoadData()
-        {
-            var passengers = Passenger.LoadFromFile(this.SampleDataPath);
+    [Fact]
+    public void LoadData()
+    {
+        System.Collections.Generic.List<Passenger> passengers = Passenger.LoadFromFile(SampleDataPath);
 
-            Assert.Equal(887, passengers.Count());
+        Assert.Equal(887, passengers.Count);
 
-            Assert.Equal("Mr. Owen Harris Braund", passengers.First().Name);
-        }
+        Assert.Equal("Mr. Owen Harris Braund", passengers[0].Name);
     }
 }
